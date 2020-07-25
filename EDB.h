@@ -36,7 +36,7 @@ class EDB {
     EDB(EDB_Write_Handler *, EDB_Read_Handler *);
     EDB(EDB_Write_Buffer *, EDB_Read_Buffer *);
     EDB_Status create(unsigned long, unsigned long, unsigned int);
-    EDB_Status open(unsigned long);
+    EDB_Status open(unsigned long,unsigned int);
     EDB_Status readRec(unsigned long, EDB_Rec);
     EDB_Status deleteRec(unsigned long);
     EDB_Status insertRec(unsigned long, const EDB_Rec);

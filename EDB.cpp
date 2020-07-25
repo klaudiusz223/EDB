@@ -80,13 +80,17 @@ EDB_Status EDB::create(unsigned long head_ptr, unsigned long tablesize, unsigned
 }
 
 // reads an existing edb header at a given recno and sets header values
-EDB_Status EDB::open(unsigned long head_ptr)
+EDB_Status EDB::open(unsigned long head_ptr, unsigned int recsize = 0)
 {
   EDB_head_ptr = head_ptr;
   // Thanks to Steve Kelly for the next line...
   EDB_table_ptr = sizeof(EDB_Header) + EDB_head_ptr; // this line was originally missing in the downloaded library
   readHead();
-  return EDB_OK;
+  if ( EDB_head.flag == EDB_FLAG && ( EDB_head.rec_size == recsize || recsize == 0 )){
+    return EDB_OK;
+  } else {
+    return EDB_ERROR;
+  }
 }
 
 // writes a record to a given recno
